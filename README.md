@@ -5,3 +5,6 @@ Press a button to start a random hidden countdown. Once the countdown is over, t
 ## Features:
 - Countdown
 - Screaming
+
+## Todo:
+- Clock audio while the countdown is still going
