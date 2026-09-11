@@ -7,8 +7,8 @@ const idleText = "Press anywhere to start the countdown.";
 const screamText = "PRESS ANYWHERE TO MAKE IT STOP";
 const startedText = "Countdown started. Be patient.";
 
-const minTime = 2;
-const maxTime = 50;
+const minTime = 1;
+const maxTime = 90;
 
 const screamAudio = new Audio("assets/scream.mp3");
 screamAudio.loop = true;
