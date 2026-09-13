@@ -23,6 +23,9 @@ p {
     font-family: Frijole;
     font-size: 2rem;
     font-weight: normal;
+    text-shadow: -2px -2px 0 #111, 0 -2px 0 #111, 2px -2px #111,
+        -2px 0px 0 #111, 2px 0px 0 #111,
+        -2px 2px 0 #111, 0px 2px 0 #111, 2px 2px 0 #111;
 }
 
 p.waiting {
