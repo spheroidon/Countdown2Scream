@@ -16,9 +16,19 @@ screamAudio.loop = true;
 const tickingAudio = new Audio("assets/ticking.mp3");
 tickingAudio.loop = true;
 
+let wakeLock = null;
+
 document.addEventListener("DOMContentLoaded", function (e) {
     text.innerText = idleText;
-})
+});
+
+async function requestWakelock() {
+    try {
+        wakeLock = await navigator.wakeLock.request("screen");
+    } catch (err) {
+        console.warn("Failed to request WakeLock: "+err.name+", "+err.message);
+    }
+}
 
 document.addEventListener("click", function (e) {
     if (!screaming) {
@@ -45,5 +55,12 @@ document.addEventListener("click", function (e) {
         screamAudio.pause();
         document.body.classList.remove("scream");
         text.innerText = idleText;
+        try {
+            wakeLock.release().then(() => {
+                wakeLock = null;
+            });
+        } catch (err) {
+            console.warn("Failed to release WakeLock: "+err.name+", "+err.message);
+        }
     }
-})
+});
