@@ -1,5 +1,7 @@
 # Countdown2Scream
 
+## Overview
+
 Press a button to start a random hidden countdown that takes anywhere from 1 to 90 seconds.
 Once the countdown is over, the site will scream at you.
 
@@ -18,6 +20,3 @@ Be patient! The countdown is random and can take anywhere from 1 to 90 seconds.
 Once it starts screaming, you can press anywhere on the screen to make it shut up.
 ### Does the site work on mobile?
 Yup!
-
-## To Do:
-- Prevent the site from dimming on mobile.
