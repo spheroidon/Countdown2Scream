@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 // Main functionality
-document.addEventListener("click", function (e) {
+function handleSite(e) {
     if (!screaming) {
         if (!waiting) {
             // Start countdown
@@ -76,5 +76,12 @@ document.addEventListener("click", function (e) {
         } catch (err) {
             console.warn("Failed to release WakeLock: " + err.name + ", " + err.message);
         }
+    }
+}
+
+document.addEventListener("click", handleSite);
+document.addEventListener("keypress", function (e) {
+    if (e.key == " ") {
+        handleSite(e);
     }
 });
