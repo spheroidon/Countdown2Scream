@@ -62,6 +62,10 @@ body.scream {
     animation: screenshake 0.4s ease-in-out infinite;
 }
 
+body.impatient {
+    background-image: url("assets/impatient.png");
+}
+
 p {
     -webkit-user-select: none;
     -ms-user-select: none;
