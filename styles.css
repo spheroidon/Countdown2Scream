@@ -71,15 +71,23 @@ p {
     -ms-user-select: none;
     user-select: none;
     position: absolute;
-    top: 5vh;
     left: 50vw;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
     font-family: Frijole;
-    font-size: 2rem;
     font-weight: normal;
     text-shadow: -2px -2px 0 #111, 0 -2px 0 #111, 2px -2px #111,
         -2px 0px 0 #111, 2px 0px 0 #111,
         -2px 2px 0 #111, 0px 2px 0 #111, 2px 2px 0 #111;
+}
+
+p#status {
+    top: 5vh;
+    font-size: 2rem;
+}
+
+p#counter {
+    bottom: 5vh;
+    font-size: 1.5rem;
 }

@@ -4,13 +4,17 @@ let waitTime = 0;
 let screaming = false;
 let impatient = false;
 
+let screamCount = 0;
+
 const minTime = 1;
 const maxTime = 90;
 
 const impatienceTime = 1;
 
 // Text variables
-const text = document.getElementById("txt");
+const labelStatus = document.getElementById("status");
+const labelCounter = document.getElementById("counter");
+
 const idleText = "Press anywhere to start the countdown.";
 const screamText = "PRESS ANYWHERE TO MAKE IT STOP";
 const waitingText = "Countdown started. Be patient.";
@@ -38,7 +42,7 @@ async function requestWakelock() {
 
 // Initial load
 document.addEventListener("DOMContentLoaded", function (e) {
-    text.innerText = idleText;
+    labelStatus.innerText = idleText;
 });
 
 
@@ -47,7 +51,7 @@ function handleSite(e) {
     if (!screaming) {
         if (!waiting) {
             // Start countdown
-            text.innerText = waitingText;
+            labelStatus.innerText = waitingText;
             waiting = true;
             waitTime = Math.random() * (maxTime - minTime) + minTime;
             tickingAudio.play();
@@ -60,8 +64,11 @@ function handleSite(e) {
                 waitTime = 0;
                 screaming = true;
                 tickingAudio.pause();
+                // Update counter
+                screamCount += 1;
+                labelCounter.innerText = "Screams: " + screamCount;
                 /// Start screaming
-                text.innerText = screamText;
+                labelStatus.innerText = screamText;
                 tickingAudio.currentTime = 0;
                 screamAudio.play();
                 document.body.classList.remove("impatient");
@@ -72,7 +79,7 @@ function handleSite(e) {
             if (!impatient) {
                 // Impatient
                 impatient = true;
-                text.innerText = impatientText;
+                labelStatus.innerText = impatientText;
                 tickingAudio.pause();
                 impatientAudio.currentTime = 0;
                 impatientAudio.play();
@@ -82,7 +89,7 @@ function handleSite(e) {
                         // Restore waiting state
                         impatient = false;
                         document.body.classList.remove("impatient");
-                        text.innerText = waitingText;
+                        labelStatus.innerText = waitingText;
                         tickingAudio.play();
                     }
                 }, impatienceTime * 1000);
@@ -93,7 +100,7 @@ function handleSite(e) {
         screaming = false;
         screamAudio.pause();
         document.body.classList.remove("scream");
-        text.innerText = idleText;
+        labelStatus.innerText = idleText;
         // Release wakelock
         try {
             wakeLock.release().then(() => {
