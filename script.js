@@ -15,10 +15,10 @@ const impatienceTime = 1;
 const labelStatus = document.getElementById("status");
 const labelCounter = document.getElementById("counter");
 
-const idleText = "Press anywhere to start the countdown.";
-const screamText = "PRESS ANYWHERE TO MAKE IT STOP";
-const waitingText = "Countdown started. Be patient.";
-const impatientText = "BE PATIENT";
+const idleText = ["Press anywhere to start the countdown."];
+const screamText = ["PRESS ANYWHERE TO MAKE IT STOP","AAAAAAAAAAAAA"];
+const waitingText = ["Countdown started. Be patient.","The countdown has started.","Prepare."];
+const impatientText = ["BE PATIENT", "WAIT A BIT", "CLICKING WONT MAKE THE COUNTDOWN FASTER", ">:(", "JUST WAIT", "DON'T BE SO IMPATIENT","GRR","JUST. WAIT.","D:<","GRRRRR"];
 
 // Audio variables
 const screamAudio = new Audio("assets/scream.mp3");
@@ -42,7 +42,7 @@ async function requestWakelock() {
 
 // Initial load
 document.addEventListener("DOMContentLoaded", function (e) {
-    labelStatus.innerText = idleText;
+    labelStatus.innerText = idleText[Math.floor(Math.random() * idleText.length)];
 });
 
 
@@ -51,7 +51,7 @@ function handleSite(e) {
     if (!screaming) {
         if (!waiting) {
             // Start countdown
-            labelStatus.innerText = waitingText;
+            labelStatus.innerText = waitingText[Math.floor(Math.random() * waitingText.length)];
             waiting = true;
             waitTime = Math.random() * (maxTime - minTime) + minTime;
             tickingAudio.play();
@@ -68,7 +68,7 @@ function handleSite(e) {
                 screamCount += 1;
                 labelCounter.innerText = "Screams: " + screamCount;
                 /// Start screaming
-                labelStatus.innerText = screamText;
+                labelStatus.innerText = screamText[Math.floor(Math.random() * screamText.length)];
                 tickingAudio.currentTime = 0;
                 screamAudio.play();
                 document.body.classList.remove("impatient");
@@ -79,7 +79,7 @@ function handleSite(e) {
             if (!impatient) {
                 // Impatient
                 impatient = true;
-                labelStatus.innerText = impatientText;
+                labelStatus.innerText = impatientText[Math.floor(Math.random() * impatientText.length)];
                 tickingAudio.pause();
                 impatientAudio.currentTime = 0;
                 impatientAudio.play();
@@ -89,7 +89,7 @@ function handleSite(e) {
                         // Restore waiting state
                         impatient = false;
                         document.body.classList.remove("impatient");
-                        labelStatus.innerText = waitingText;
+                        labelStatus.innerText = waitingText[Math.floor(Math.random() * waitingText.length)];
                         tickingAudio.play();
                     }
                 }, impatienceTime * 1000);
